@@ -16,7 +16,7 @@ User
 Resources (cards)
 ```
 
-- See resources by category
+- See Resources by category
 - Add Resources
 - Delete Resources
 - Mark Resources as COMPLETE
