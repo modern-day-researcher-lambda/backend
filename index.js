@@ -2,9 +2,16 @@ const express = require('express');
 require('dotenv').config();
 const PORT = process.env.PORT;
 
+const usersRouter = require('./api/users/usersRouter.js');
+const categoryRouter = require('./api/category/categoryRouter.js');
+const cardsRouter = require('./api/cards/cardsRouter.js');
+
 const server = express();
 
 server.use(express.json());
+server.use('/users', usersRouter);
+server.use('/users/category', categoryRouter);
+server.use('/users/category/cards', cardsRouter);
 
 server.listen(PORT);
 
