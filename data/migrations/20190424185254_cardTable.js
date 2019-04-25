@@ -16,7 +16,6 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     tbl.string('updated')
-      .notNullable()
       .unique();
     tbl.integer('user_id')
       .notNullable()
