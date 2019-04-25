@@ -11,10 +11,21 @@ exports.up = function(knex, Promise) {
       .unique();
     tbl.string('link')
       .notNullable();
+    tbl.boolean('completed');
+    tbl.string('created')
+      .notNullable()
+      .unique();
+    tbl.string('updated')
+      .notNullable()
+      .unique();
     tbl.integer('user_id')
       .notNullable()
       .references('id')
       .inTable('users');
+    tbl.integer('category_id')
+      .notNullable()
+      .references('id')
+      .inTable('category');
   });
 };
 
