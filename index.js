@@ -13,6 +13,6 @@ server.use('/users', usersRouter);
 server.use('/category', categoryRouter);
 // server.use('/users', cardsRouter);
 
-server.listen(PORT);
+server.listen(6000);
 
 module.exports = server;

@@ -3,6 +3,7 @@ const db = require('../../data/dbConfig.js');
 module.exports = {
   getAll,
   getCategoryById,
+  checkForCategory,
 };
 
 async function getAll() {
@@ -11,5 +12,10 @@ async function getAll() {
 
 async function getCategoryById(id) {
   return db('category')
-    .where('id', Number(id));
+    .where('id', id);
+};
+
+async function checkForCategory(newCategory) {
+  return db('category')
+    .where('title', newCategory.title);
 };

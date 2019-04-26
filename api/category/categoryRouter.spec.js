@@ -21,9 +21,9 @@ describe('Category router handler', () => {
     token = res.body.token;
   });
 
-  // afterEach( async () => {
-  //   await db('category').truncate();
-  // });
+  afterEach( async () => {
+    await db('category').truncate();
+  });
 
   describe('GET /', () => {
     it('responds with status code 200', async () => {

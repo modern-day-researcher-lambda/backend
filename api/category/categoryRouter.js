@@ -22,4 +22,23 @@ categoryRouter.get('/:id', auth, async (req, res) => {
   };
 });
 
+categoryRouter.post('/', auth, async (req, res) => {
+  const newCategory = req.body;
+  if(newCategory.title) {
+    const duplicate = await db.checkForCategory(newCategory);
+    if(duplicate.length > 0) {
+      res.status(400).json({ message: 'Category already exists' });
+    } else {
+      const ids = await db.addCategory(newCategory);
+      if(ids) {
+        res.status(201).json(ids);
+      } else {
+        res.status(500).json({ message: 'Databse Error' });
+      }
+    }
+  } else {
+    res.status(422).json({ message: 'Please provide a title' });
+  };
+});
+
 module.exports = categoryRouter;
