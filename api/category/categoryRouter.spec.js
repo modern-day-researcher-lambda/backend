@@ -27,11 +27,11 @@ describe('Category router handler', () => {
 
   describe('GET /', () => {
     it('responds with status code 200', async () => {
-      await request(server)
-        .post('/users/category')
+      const post = await request(server)
+        .post('/category/')
         .set('Authorization', token)
         .send({ title: 'Test Title' });
-      const res = await request(server).get('/users/category');
+      const res = await request(server).get('/category');
       expect(res.status).toBe(200);
     });
   });  
