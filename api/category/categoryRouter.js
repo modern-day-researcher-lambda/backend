@@ -53,7 +53,13 @@ categoryRouter.put('/:id', async (req, res) => {
 });
 
 categoryRouter.delete('/:id', async (req, res) => {
-
+  const { id } = req.params;
+  const categoryDeleted = await db.deleteCategory(id);
+  if(categoryDeleted) {
+    res.status(202).json({ message: 'The category was removed' });
+  } else {
+    res.status(500).json({ message: 'The category could not be deleted.' });
+  };
 });
 
 module.exports = categoryRouter;
