@@ -22,7 +22,7 @@ describe('Category router handler', () => {
   });
 
   afterEach( async () => {
-    await db('category').truncate();
+    await db('category').delete();
   });
 
   describe('GET /', () => {
@@ -70,6 +70,19 @@ describe('Category router handler', () => {
         .set('Authorization', token)
         .send({ title: 'New Title' })
       expect(res.status).toBe(200);
+    });
+  });
+
+  describe('DELETE /', () => {
+    it('responds with status code 202', async () => {
+      await request(server)
+        .post('/category/')
+        .set('Authorization', token)
+        .send({ title: "Test Title" })
+      const res = await request(server)
+        .del('/category/1')
+        .set('Authorization', token);
+      expect(res.status).toBe(202);
     });
   });
 });

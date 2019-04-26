@@ -52,4 +52,8 @@ categoryRouter.put('/:id', async (req, res) => {
   };
 });
 
+categoryRouter.delete('/:id', async (req, res) => {
+
+});
+
 module.exports = categoryRouter;
