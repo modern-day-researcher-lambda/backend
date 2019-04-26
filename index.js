@@ -10,8 +10,8 @@ const server = express();
 
 server.use(express.json());
 server.use('/users', usersRouter);
-server.use('/users/category', categoryRouter);
-server.use('/users/category/cards', cardsRouter);
+// server.use('/users', categoryRouter);
+// server.use('/users', cardsRouter);
 
 server.listen(PORT);
 
