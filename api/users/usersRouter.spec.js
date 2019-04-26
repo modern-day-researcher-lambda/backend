@@ -21,4 +21,26 @@ describe('Users route handling', () => {
       expect(res.body).toEqual([]);
     });
   });
+
+  describe('POST /users/register', () => {
+    it('responds with status code 201', async () => {
+      const res = await request(server)
+        .post('/users/register')
+        .send({ username: 'user2', password: 'pass2'});
+      expect(res.status).toBe(201);
+    });
+
+    it('responds with status code 422 when body missing', async () => {
+      const res = await request(server)
+        .post('/users/register');
+      expect(res.status).toBe(422);
+    });
+
+    it('responds with a token', async () => {
+      const res = await request(server)
+        .post('/users/register')
+        .send({ username: 'user2', password: 'pass2'});
+      expect(res.body.token).toBeDefined();
+    });
+  });
 });
