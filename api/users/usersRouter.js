@@ -13,4 +13,9 @@ function generateToken(user) {
   return jwt.sign(payload, jwtKey, options);
 };
 
+usersRouter.get('/', async (req, res) => {
+  const rows = await db.getAll();
+  res.status(200).json(rows);
+});
+
 module.exports = usersRouter;
