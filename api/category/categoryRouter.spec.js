@@ -21,9 +21,9 @@ describe('Category router handler', () => {
     token = res.body.token;
   });
 
-  afterEach( async () => {
-    await db('category').truncate();
-  });
+  // afterEach( async () => {
+  //   await db('category').truncate();
+  // });
 
   describe('GET /', () => {
     it('responds with status code 200', async () => {
@@ -34,5 +34,18 @@ describe('Category router handler', () => {
       const res = await request(server).get('/category');
       expect(res.status).toBe(200);
     });
-  });  
+  });
+
+  describe(' GET /id', () => {
+    it('responds with status code 200', async () => {
+      const post = request(server)
+        .post('/category/')
+        .set('Authrization', token)
+        .send({ title: 'Test Title' });
+      const res = await request(server)
+        .get('/category/1')
+        .set('Authorization', token);
+      expect(res.status).toBe(200);
+    });
+  });
 });
