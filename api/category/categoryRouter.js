@@ -41,4 +41,15 @@ categoryRouter.post('/', auth, async (req, res) => {
   };
 });
 
+categoryRouter.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  const categoryUpdated = await db.updateCategory(id, changes);
+  if (categoryUpdated) {
+    res.status(201).json({ message: 'The category was updated' });
+  } else {
+    res.status(500).json({ message: 'Database error' });
+  };
+});
+
 module.exports = categoryRouter;
