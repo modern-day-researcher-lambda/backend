@@ -48,4 +48,14 @@ describe('Category router handler', () => {
       expect(res.status).toBe(200);
     });
   });
+
+  describe('POST /', () => {
+    it('responds with status code 201', async () => {
+      const res = await request(server)
+        .post('/category/')
+        .set('Authorization', token)
+        .send({ title: 'Test Title' });
+      expect(res.status).toBe(201);
+    });
+  });
 });
