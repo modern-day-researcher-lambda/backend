@@ -4,7 +4,8 @@ module.exports = {
   getAll,
   getCategoryById,
   checkForCategory,
-  updateCategory
+  updateCategory,
+  deleteCategory
 };
 
 async function getAll() {
@@ -25,4 +26,10 @@ async function updateCategory(id, changes) {
   return db('category')
     .where('id', Number(id))
     .update(changes);
+};
+
+async function deleteCategory(id) {
+  return db('category')
+    .where('id', Number(id))
+    .del();
 };
