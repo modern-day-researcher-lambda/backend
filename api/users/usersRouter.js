@@ -50,4 +50,8 @@ usersRouter.post('/register', async (req, res) => {
   };
 });
 
+usersRouter.post('/login', async (req, res) => {
+  
+});
+
 module.exports = usersRouter;
