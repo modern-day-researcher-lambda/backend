@@ -18,4 +18,36 @@ usersRouter.get('/', async (req, res) => {
   res.status(200).json(rows);
 });
 
+usersRouter.post('/register', async (req, res) => {
+  const newUser = req.body;
+  if(newUser.username && newUser.password) {
+    const duplicate = await db.checkForUsername(newUser);
+    if(duplicate.length > 0) {
+      res.status(422).json({ message: 'Username already exists.' });
+    } else {
+      const hash = bcrypt.hashSync(newUser.password, 10);
+      newUser.password = hash;
+      const ids = await db.addUser(newUser);
+      if(ids) {
+        const id = ids[0];
+        const user = await db.getUserById(id);
+        if(user) {
+          const token = generateToken(user);
+          if(token) {
+            res.status(201).send({ token });
+          } else {
+            res.status(500).json({ message: 'Error generating token.' });
+          }
+        } else {
+          res.status(500).json({ message: 'Error finding user in the database' });
+        }
+      } else {
+        res.status(500).json({ message: 'Error adding user to database' });
+      }
+    }
+  } else {
+      res.status(422).json({ message: 'Missing username or password.' });
+  };
+});
+
 module.exports = usersRouter;
