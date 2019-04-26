@@ -12,4 +12,14 @@ categoryRouter.get('/', async (req, res) => {
   };
 });
 
+categoryRouter.get('/:id', auth, async (req, res) => {
+  const { id } = req.params;
+  const category = await db.getCategoryById(id);
+  if(category.length > 0) {
+    res.status(200).json(category[0]);
+  } else {
+    res.status(404).json({ message: 'Not Found' })
+  };
+});
+
 module.exports = categoryRouter;
