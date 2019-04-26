@@ -27,7 +27,7 @@ describe('Category router handler', () => {
 
   describe('GET /', () => {
     it('responds with status code 200', async () => {
-      const post = await request(server)
+      await request(server)
         .post('/category/')
         .set('Authorization', token)
         .send({ title: 'Test Title' });
@@ -38,7 +38,7 @@ describe('Category router handler', () => {
 
   describe(' GET /id', () => {
     it('responds with status code 200', async () => {
-      const post = request(server)
+      await request(server)
         .post('/category/')
         .set('Authrization', token)
         .send({ title: 'Test Title' });
@@ -56,6 +56,20 @@ describe('Category router handler', () => {
         .set('Authorization', token)
         .send({ title: 'Test Title' });
       expect(res.status).toBe(201);
+    });
+  });
+
+  describe('PUT /', () => {
+    it('responds with status code 201', async () => {
+      await request(server)
+        .post('/category/')
+        .set('Authorization', token)
+        .send({ title: 'Test Title' });
+      const res = await request(server)
+        .put('/category/1')
+        .set('Authorization', token)
+        .send({ title: 'New Title' })
+      expect(res.status).toBe(200);
     });
   });
 });
