@@ -51,7 +51,22 @@ usersRouter.post('/register', async (req, res) => {
 });
 
 usersRouter.post('/login', async (req, res) => {
-  
+  const creds = req.body;
+  if(creds.username && creds.password) {
+    const user = await db.checkForUsername(creds);
+    if(user.length > 0) {
+      if(bcrypt.compareSync(creds.password, user[0].password)) {
+        const token = generateToken(user);
+        res.status(201).send({ token });
+      } else {
+        res.status(401).json({ message: 'incorrect username or password' });
+      }
+    } else {
+      res.status(401).json({ message: 'incorrect username or password' });
+    }
+  } else {
+    res.status(422).json({ message: 'Missing username or password' });
+  }
 });
 
 module.exports = usersRouter;
