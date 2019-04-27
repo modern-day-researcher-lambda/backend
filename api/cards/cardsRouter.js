@@ -1,6 +1,7 @@
 const express = require('express');
 const userDB = require('../users/usersHelper.js');
 const cardsDB = require('./cardsHelper.js');
+
 const { auth } = require('../../auth/authenticate.js');
 const cardsRouter = express.Router();
 
@@ -9,11 +10,11 @@ cardsRouter.get('/users/:id', auth, async (req, res) => {
   const { id } = req.params;
   const cards = await cardsDB.getAll(id);
     
-    if(cards.length > 0) {
-      res.status(200).json(cards);
-    } else {
-      res.status(404).json({ message: 'Could not get any cards' });
-    }
+  if(cards.length > 0) {
+    res.status(200).json(cards);
+  } else {
+    res.status(404).json({ message: 'Could not get any cards' });
+  }
 });
 
 // GET CARD BY ID

@@ -9,18 +9,15 @@ module.exports = {
 };
 
 async function getAll(id) {
-  return db('cards')
-    .where('user_id', id);
+  return db('cards').where('user_id', id);
 };
 
 async function getCardById(id) {
-  return db('cards')
-    .where('id', id);
+  return db('cards').where('id', id);
 };
 
 async function addCard(newCard) {
-  return db('cards')
-    .insert(newCard);
+  return db('cards').insert(newCard);
 };
 
 async function removeCard(id) {

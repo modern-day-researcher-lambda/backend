@@ -31,7 +31,8 @@ usersRouter.post('/register', async (req, res) => {
       if(ids) {
         const id = ids[0];
         const user = await db.getUserById(id);
-        if(user) { const token = generateToken(user);
+        if(user) {
+          const token = generateToken(user);
           if(token) {
             res.status(201).send({ token });
           } else {
