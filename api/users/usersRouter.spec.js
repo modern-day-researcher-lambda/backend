@@ -83,7 +83,7 @@ describe('Users route handling', () => {
       const res = await request(server)
         .post('/users/login')
         .send({ username: 'username', password: 'password' });
-        expect(res.body.token).toBeDefined();
+      expect(res.body.token).toBeDefined();
     });
   });
 });

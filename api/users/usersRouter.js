@@ -13,11 +13,7 @@ function generateToken(user) {
   return jwt.sign(payload, jwtKey, options);
 };
 
-usersRouter.get('/', async (req, res) => {
-  const rows = await db.getAll();
-  res.status(200).json(rows);
-});
-
+// REGISTER NEW USER
 usersRouter.post('/register', async (req, res) => {
   const newUser = req.body;
   if(newUser.username && newUser.password) {
@@ -31,7 +27,8 @@ usersRouter.post('/register', async (req, res) => {
       if(ids) {
         const id = ids[0];
         const user = await db.getUserById(id);
-        if(user) { const token = generateToken(user);
+        if(user) {
+          const token = generateToken(user);
           if(token) {
             res.status(201).send({ token });
           } else {
@@ -49,6 +46,7 @@ usersRouter.post('/register', async (req, res) => {
   };
 });
 
+// LOGIN USER
 usersRouter.post('/login', async (req, res) => {
   const creds = req.body;
   if(creds.username && creds.password) {

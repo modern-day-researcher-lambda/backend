@@ -12,16 +12,13 @@ async function getAll() {
 };
 
 async function addUser(newUser) {
-  return db('users')
-    .insert(newUser);
+  return db('users').insert(newUser);
 };
 
 async function getUserById(id) {
-  return db('users')
-      .where('id', Number(id));
+  return db('users').where('id', Number(id));
 };
 
 async function checkForUsername(newUser) {
-  return db('users')
-    .where('username', newUser.username);
+  return db('users').where('username', newUser.username);
 };

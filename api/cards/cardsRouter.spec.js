@@ -3,7 +3,6 @@ const server = require('../../index.js');
 const db = require('../../data/dbConfig.js');
 
 let token;
-
 beforeAll(async () => {
   const res = await request(server)
       .post('/users/register')
@@ -21,9 +20,7 @@ describe('Cards route handler', () => {
     token = res.body.token;
   });
 
-  afterEach( async () => {
-    await db('cards').delete();
-  });
+  afterEach( async () => await db('cards').delete());
 
   describe('GET /cards/user/1', () => {
     beforeEach( async () => {
