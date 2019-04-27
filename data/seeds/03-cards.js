@@ -13,8 +13,27 @@ exports.seed = function(knex, Promise) {
           completed: false,
           created: new Date(),
           updated: '',
-          user_id: 1,
-          category_id: 1
+          user_id: 1
+        },
+        {
+          title: 'A New title',
+          description: 'Description  goes here',
+          category: 'Video',
+          link: 'www.google.com',
+          completed: false,
+          created: new Date(),
+          updated: '',
+          user_id: 2
+        },
+        {
+          title: 'A New title',
+          description: 'Description  goes here',
+          category: 'Video',
+          link: 'www.google.com',
+          completed: false,
+          created: new Date(),
+          updated: '',
+          user_id: 1
         },
       ]);
     });

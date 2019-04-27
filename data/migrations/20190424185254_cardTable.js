@@ -7,24 +7,17 @@ exports.up = function(knex, Promise) {
     tbl.string('description')
       .notNullable();
     tbl.string('category')
-      .notNullable()
-      .unique();
+      .notNullable();
     tbl.string('link')
       .notNullable();
     tbl.boolean('completed');
     tbl.string('created')
-      .notNullable()
-      .unique();
-    tbl.string('updated')
-      .unique();
+      .notNullable();
+    tbl.string('updated');
     tbl.integer('user_id')
       .notNullable()
       .references('id')
       .inTable('users');
-    tbl.integer('category_id')
-      .notNullable()
-      .references('id')
-      .inTable('category');
   });
 };
 
