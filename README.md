@@ -40,12 +40,12 @@ Open a separate terminal and run `yarn server` inside the **server** folder
 ## How to use API
 
 ### User Routes
-- **POST** localhost:5000/users/register (Used to register a user)
-- **POST** localhost:5000/users/login (Used to login a user)
+- **POST** localhost:5000/users/register `Used to register a user`
+- **POST** localhost:5000/users/login `Used to login a user`
 
 ### Card Routes
-- **GET** localhost:5000/cards/users/:id (Get all the cards for a user)
-- **GET** localhost:5000/cards/:id (Get a card by ID)
-- **POST** localhost:5000/cards/users (Add a new card to the user)
-- **DELETE** localhost:5000/cards/:id (Delete a card by ID)
-- **PUT** localhost:5000/cards/:id (Update a card by ID)
+- **GET** localhost:5000/cards/users/:id `Get all the cards for a user`
+- **GET** localhost:5000/cards/:id `Get a card by ID`
+- **POST** localhost:5000/cards/users `Add a new card to the user`
+- **DELETE** localhost:5000/cards/:id `Delete a card by ID`
+- **PUT** localhost:5000/cards/:id `Update a card by ID`
