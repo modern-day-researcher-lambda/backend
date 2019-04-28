@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const usersRouter = require('./api/users/usersRouter.js');
 const cardsRouter = require('./api/cards/cardsRouter.js');
