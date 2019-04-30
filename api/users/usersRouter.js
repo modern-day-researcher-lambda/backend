@@ -30,7 +30,7 @@ usersRouter.post('/register', async (req, res) => {
         if(user) {
           const token = generateToken(user);
           if(token) {
-            res.status(201).send({ token });
+            res.status(201).send({ token, user });
           } else {
             res.status(500).json({ message: 'Error generating token.' });
           }
